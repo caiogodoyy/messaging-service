@@ -26,6 +26,7 @@ public class Runner implements CommandLineRunner {
             System.out.println("Digite a mensagem: ");
             String input;
             input = scanner.nextLine();
+            input = ProducerApplication.routingKey + ": " + input;
 
             if(input.equalsIgnoreCase("sair"))
                 break;

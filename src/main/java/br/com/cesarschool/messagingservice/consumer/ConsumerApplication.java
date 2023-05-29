@@ -1,5 +1,6 @@
 package br.com.cesarschool.messagingservice.consumer;
 
+import br.com.cesarschool.messagingservice.Menu;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.TopicExchange;
@@ -14,8 +15,8 @@ import org.springframework.context.annotation.Bean;
 public class ConsumerApplication {
 
     static final String topicExchangeName = "topic-exchange";
-    static final String routingKey = "route-1";
-    private final String queueName = "queue-1";
+    static final String routingKey = Menu.getRoutingKey();
+    static final String queueName = Menu.getQueueName();
 
     @Bean
     Queue queue() {
