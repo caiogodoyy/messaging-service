@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 public class ProducerApplication {
 
     static final String topicExchangeName = "topic-exchange";
-    static final String routingKey = Menu.getRoutingKey();
+    static final String routingKey = Menu.routingKey;
 
     @Bean
     TopicExchange exchange() {

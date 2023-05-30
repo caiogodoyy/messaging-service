@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Bean;
 public class ConsumerApplication {
 
     static final String topicExchangeName = "topic-exchange";
-    static final String routingKey = Menu.getRoutingKey();
-    static final String queueName = Menu.getQueueName();
+    static final String routingKey = Menu.routingKey;
+    static final String queueName = Menu.queueName;
 
     @Bean
     Queue queue() {

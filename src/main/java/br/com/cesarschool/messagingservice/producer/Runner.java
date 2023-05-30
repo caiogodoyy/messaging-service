@@ -1,6 +1,8 @@
 package br.com.cesarschool.messagingservice.producer;
 
 import java.util.Scanner;
+
+import org.springframework.amqp.rabbit.connection.Connection;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -21,6 +23,17 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Aguardando a conexão com o servidor RabbitMQ...");
+        try {
+            Connection connection = rabbitTemplate.getConnectionFactory().createConnection();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao estabelecer conexão com o servidor RabbitMQ: " + e.getMessage());
+            context.close();
+            return;
+        }
+        System.out.println("Conexão estabelecida com sucesso!");
 
         while(true) {
             System.out.println("Digite a mensagem: ");

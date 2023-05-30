@@ -8,32 +8,16 @@ import org.springframework.boot.SpringApplication;
 import java.util.Scanner;
 
 public class Menu {
-	private static String queueName;
-	private static String routingKey;
+	public static String queueName;
+	public static String routingKey;
 
-	public static String getQueueName() {
-		return queueName;
-	}
-
-	public static void setQueueName(String queueName) {
-		Menu.queueName = queueName;
-	}
-
-	public static String getRoutingKey() {
-		return routingKey;
-	}
-
-	public static void setRoutingKey(String routingKey) {
-		Menu.routingKey = routingKey;
-	}
-
-	public static void route(Scanner scanner) {
+	public static void inputRoutingKey(Scanner scanner) {
 		System.out.println("(1) Status de Compra\n(2) Status de Envio\n(3) Status de Recebimento");
 		int op = scanner.nextInt();
 		switch (op) {
-			case 1 -> setRoutingKey("Status de Compra");
-			case 2 -> setRoutingKey("Status de Envio");
-			case 3 -> setRoutingKey("Status de Recebimento");
+			case 1 -> routingKey = "Status de Compra";
+			case 2 -> routingKey = "Status de Envio";
+			case 3 -> routingKey = "Status de Recebimento";
 		}
 	}
 
@@ -47,14 +31,12 @@ public class Menu {
 			case 2 -> {
 				scanner.nextLine();
 				System.out.println("Queue: ");
-				setQueueName(scanner.nextLine());
-				route(scanner);
-
+				queueName = scanner.nextLine();
+				inputRoutingKey(scanner);
 				SpringApplication.run(ConsumerApplication.class, args);
 			}
 			case 3 -> {
-				route(scanner);
-
+				inputRoutingKey(scanner);
 				SpringApplication.run(ProducerApplication.class, args);
 			}
 			case 4 -> System.out.println("Encerrando o programa.");
